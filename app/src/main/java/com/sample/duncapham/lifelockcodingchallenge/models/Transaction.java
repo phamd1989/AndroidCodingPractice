@@ -42,7 +42,7 @@ public class Transaction extends Model implements Serializable{
     }
 
     public static void addTransaction(String amount, String date, Account account, String merchant, String category) {
-        long uid = (account.getName() + merchant).toLowerCase().hashCode();
+        long uid = (amount + account.getName() + merchant).toLowerCase().hashCode();
         if (getTransaction(uid) == null) {
             Transaction transaction = new Transaction(amount, date, account, merchant, category);
             transaction.save();
@@ -50,7 +50,7 @@ public class Transaction extends Model implements Serializable{
     }
 
     public static List<Transaction> getAllTransactions() {
-        List<Transaction> transactions = new Select().from(Feature.class).execute();
+        List<Transaction> transactions = new Select().from(Transaction.class).execute();
         return transactions;
     }
 

@@ -22,7 +22,7 @@ public class TransactionListViewAdapter extends ArrayAdapter<Transaction> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Transaction transaction = getItem(position);
+        final Transaction transaction = getItem(position);
         View view;
         if (convertView == null) {
             LayoutInflater inflator = LayoutInflater.from(getContext());

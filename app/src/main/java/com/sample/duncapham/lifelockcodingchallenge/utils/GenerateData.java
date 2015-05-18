@@ -15,7 +15,11 @@ public class GenerateData {
     private static final String ACCOUNT_NAME2 = "Wells Fargo Savings 6392";
     private static final String ACCOUNT_NAME3 = "Captial One Visa 1933";
     private static final String ACCOUNT_NAME4 = "American Express 9576";
-    private static final String[] accounts = new String[] {ACCOUNT_NAME1, ACCOUNT_NAME2, ACCOUNT_NAME3, ACCOUNT_NAME4};
+    private static final String ACCOUNT_NAME5 = "Macy 9382";
+    private static final String ACCOUNT_NAME6 = "Chase Visa 1234";
+    private static final String ACCOUNT_NAME7 = "Discover 6011";
+
+    private static final String[] accounts = new String[] {ACCOUNT_NAME1, ACCOUNT_NAME2, ACCOUNT_NAME3, ACCOUNT_NAME4, ACCOUNT_NAME5, ACCOUNT_NAME6, ACCOUNT_NAME7};
     private static final String[] merchants = new String[] {"Mama Mia", "Tacobell", "Subway", "MicroNet Inc", "AT&T U-verse", "Costco", "Crate & Barrel", "Wells Fargo Bank"};
 
     public static void generateFeatureData() {
@@ -35,15 +39,19 @@ public class GenerateData {
         Account.addAccount(ACCOUNT_NAME2, "15386.08");
         Account.addAccount(ACCOUNT_NAME3, "-358.27");
         Account.addAccount(ACCOUNT_NAME4, "482.09");
+        Account.addAccount(ACCOUNT_NAME5, "482.09");
+        Account.addAccount(ACCOUNT_NAME6, "482.09");
+        Account.addAccount(ACCOUNT_NAME7, "482.09");
     }
 
     public static void generateTransactionData() {
-        for (int i=0; i<20; i++) {
+        for (int i=0; i<100; i++) {
             int j = randInt(accounts.length);
             Account account = Account.getAccount(accounts[j]);
             j = randInt(merchants.length);
             String merchant = merchants[j];
-            Transaction.addTransaction(Double.toString(randDouble(-5000,5000)),
+
+            Transaction.addTransaction(randDouble(-5000,5000),
                                        "Fri Dec 19, 2014",
                                        account,
                                        merchant,
@@ -51,10 +59,11 @@ public class GenerateData {
         }
     }
 
-    public static double randDouble(int min, int max) {
+    public static String randDouble(int min, int max) {
         Random rand = new Random();
         double randomNum = rand.nextDouble() * (max - min + 1) + min;
-        return randomNum;
+        String result = String.format("%.2f", randomNum);
+        return result;
     }
 
     public static int randInt(int n) {
