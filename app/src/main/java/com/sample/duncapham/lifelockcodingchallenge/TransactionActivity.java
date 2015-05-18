@@ -4,14 +4,34 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
+
+import com.sample.duncapham.lifelockcodingchallenge.adapters.TransactionListViewAdapter;
+import com.sample.duncapham.lifelockcodingchallenge.models.Transaction;
+import com.sample.duncapham.lifelockcodingchallenge.utils.GenerateData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class TransactionActivity extends ActionBarActivity {
+    private ListView lvTransactions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction);
+        lvTransactions = (ListView) findViewById(R.id.lvTransactions);
+        setupData();
+    }
+
+    private void setupData() {
+        final List<Transaction> arraysOfTransactions = new ArrayList<>();
+        TransactionListViewAdapter adapter = new TransactionListViewAdapter(this, arraysOfTransactions);
+        lvTransactions.setAdapter(adapter);
+        GenerateData.generateAccountData();
+        GenerateData.generateTransactionData();
+        adapter.addAll(Transaction.getAllTransactions());
     }
 
     @Override
