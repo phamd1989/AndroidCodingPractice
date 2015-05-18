@@ -18,11 +18,19 @@
         </activity>
         <activity
             android:name=".TransactionActivity"
-            android:label="@string/title_activity_transaction" >
+            android:label="@string/title_activity_transaction"
+            android:parentActivityName=".LifeLock">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".LifeLock" />
         </activity>
         <activity
             android:name=".TransactionDetailsActivity"
-            android:label="@string/title_activity_transaction_details" >
+            android:label="@string/title_activity_transaction_details"
+            android:parentActivityName=".TransactionActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".TransactionActivity" />
         </activity>
     </application>
 

@@ -3,6 +3,6 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_transaction">TransactionActivity</string>
-    <string name="title_activity_transaction_details">TransactionDetailsActivity</string>
+    <string name="title_activity_transaction">Financial Activity</string>
+    <string name="title_activity_transaction_details">Transaction</string>
 </resources>

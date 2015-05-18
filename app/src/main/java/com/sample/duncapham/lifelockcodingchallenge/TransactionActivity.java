@@ -1,6 +1,7 @@
 package com.sample.duncapham.lifelockcodingchallenge;
 
 import android.content.Intent;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -26,6 +27,7 @@ public class TransactionActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction);
+//        getActionBar().setDisplayHomeAsUpEnabled(true);
         lvTransactions = (ListView) findViewById(R.id.lvTransactions);
         setupData();
 
@@ -89,10 +91,12 @@ public class TransactionActivity extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                return true;
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
         }
 
         return super.onOptionsItemSelected(item);

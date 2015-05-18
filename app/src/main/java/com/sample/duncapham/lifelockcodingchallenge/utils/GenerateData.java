@@ -23,6 +23,15 @@ public class GenerateData {
     private static final String[] merchants = new String[] {"Mama Mia", "Tacobell", "Subway", "MicroNet Inc", "AT&T U-verse", "Costco", "Crate & Barrel", "Wells Fargo Bank"};
 
     public static void generateFeatureData() {
+        Feature.addFeature("Identity Cards",
+                Feature.Menu.IDENTITY_CARD.ordinal(),
+                "Your identity is protected");
+        Feature.addFeature("Payment Cards",
+                Feature.Menu.PAYMENT_CARD.ordinal(),
+                "Protect your money");
+        Feature.addFeature("Other Cards",
+                Feature.Menu.OTHER_CARD.ordinal(),
+                "Loyalty, Gift, Insurance");
         Feature.addFeature("LifeLock Protection",
                 Feature.Menu.PROTECTION.ordinal(),
                 "Live freely in an always connected world");

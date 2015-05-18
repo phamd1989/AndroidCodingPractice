@@ -1,5 +1,7 @@
 package com.sample.duncapham.lifelockcodingchallenge;
 
+import android.graphics.Color;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -15,7 +17,7 @@ public class TransactionDetailsActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction_details);
-
+//        getActionBar().setDisplayHomeAsUpEnabled(true);
         Transaction transaction = (Transaction) getIntent().getSerializableExtra("data");
         setupData(transaction);
     }
@@ -28,6 +30,12 @@ public class TransactionDetailsActivity extends ActionBarActivity {
         TextView tvCategoryValue = (TextView) findViewById(R.id.tvCategoryValue);
 
         tvAmountValue.setText(transaction.getAmount());
+        if (Double.parseDouble(transaction.getAmount()) > 0) {
+            tvAmountValue.setTextColor(Color.parseColor("#00AD62"));
+        } else {
+            tvAmountValue.setTextColor(Color.parseColor("#0079FF"));
+        }
+
         tvDateValue.setText(transaction.getDate());
         tvAccountValue.setText(transaction.getAccount().getName());
         tvMerchantValue.setText(transaction.getMerchant());
@@ -47,10 +55,12 @@ public class TransactionDetailsActivity extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                return true;
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
         }
 
         return super.onOptionsItemSelected(item);

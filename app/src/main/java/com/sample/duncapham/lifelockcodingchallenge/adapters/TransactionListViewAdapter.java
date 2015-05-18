@@ -1,6 +1,7 @@
 package com.sample.duncapham.lifelockcodingchallenge.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,11 @@ public class TransactionListViewAdapter extends ArrayAdapter<Transaction> {
 
         tvMerchant.setText(transaction.getMerchant());
         tvAmount.setText(transaction.getAmount());
+        if (Double.parseDouble(transaction.getAmount()) > 0) {
+            tvAmount.setTextColor(Color.parseColor("#00AD62"));
+        } else {
+            tvAmount.setTextColor(Color.parseColor("#0079FF"));
+        }
         tvDate.setText(transaction.getDate());
         tvAccount.setText(transaction.getAccount().getName());
         return view;

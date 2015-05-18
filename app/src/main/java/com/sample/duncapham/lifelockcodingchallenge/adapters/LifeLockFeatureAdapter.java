@@ -1,6 +1,7 @@
 package com.sample.duncapham.lifelockcodingchallenge.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,19 @@ public class LifeLockFeatureAdapter extends ArrayAdapter<Feature> {
         TextView tvDesc = (TextView) view.findViewById(R.id.tvDesc);
         tvTitle.setText(feature.getTitle());
         tvDesc.setText(feature.getDesc());
+        long uid = feature.getUid();
+        if (uid == Feature.Menu.PROTECTION.ordinal()) {
+            view.setBackgroundColor(Color.RED);
+        } else if (uid == Feature.Menu.FINANCIAL_ACTIVITY.ordinal()) {
+            view.setBackgroundColor(Color.GREEN);
+        } else if (uid == Feature.Menu.IDENTITY_CARD.ordinal()) {
+            view.setBackgroundColor(Color.YELLOW);
+        } else if (uid == Feature.Menu.OTHER_CARD.ordinal()) {
+            view.setBackgroundColor(Color.CYAN);
+        } else if (uid == Feature.Menu.PAYMENT_CARD.ordinal()) {
+            view.setBackgroundColor(Color.BLUE);
+        }
+
         return view;
     }
 }
